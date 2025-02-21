@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from './Components/Home';
+import About from './Components/About';
+import Services from './Components/Service';
+import Navbar from './Components/Navbar';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Contact from './Components/contact';
+import Login from './Components/LoginForm';
+import Register from './Components/Register';
+import ForgotPassword from './Components/ForgotPassword';
 
-function App() {
+
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check localStorage for existing login
+  useEffect(() => {
+    const userEmail = localStorage.getItem("userEmail");
+    if (userEmail) {
+      setIsAuthenticated(true);
+    }
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     {isAuthenticated && <Navbar setIsAuthenticated={setIsAuthenticated} />}
+    <Routes>
+      <Route path="/home" element={<Home/>}/>
+      <Route path="/about" element={<About/>}/>
+      <Route path="/services" element={<Services/>}/>
+      <Route path="/contact" element={<Contact/>}/>
+      <Route path="/" element={<Login/>}/>
+      <Route path="/Register" element={<Register/>}/> 
+      <Route path="/ForgotPassword" element={<ForgotPassword/>}/> 
+      <Route path="/Navbar" element={<Navbar/>}/> 
+
+    </Routes>
+    
+  
+    </>
   );
 }
 
