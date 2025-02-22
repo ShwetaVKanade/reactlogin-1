@@ -46,7 +46,7 @@ const App = () => {
         <Route path="/services" element={isAuthenticated ? <Services /> : <Navigate to="/" />} />
         <Route path="/contact" element={isAuthenticated ? <Contact /> : <Navigate to="/" />} />
         <Route path="/register" element={isAuthenticated ? <Register /> : <Navigate to="/" />} />
-        <Route path="/forgotpassword" element={isAuthenticated ? <ForgotPassword /> : <Navigate to="/" />} />
+        <Route path="/forgotpassword" element={<ForgotPassword/>}/>
       </Routes>
     </>
   );
