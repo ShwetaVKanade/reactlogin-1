@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import "./forgotpassword.css"; // Import CSS separately
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ForgotPassword = () => {
@@ -22,11 +21,11 @@ const ForgotPassword = () => {
     }
     setErrorMessage("");
     alert("🎉 Password updated successfully!");
-    // Add API call here
+    // Add API call here to update the password in the backend.
   };
 
   return (
-    <div className=" d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
       <div className="card p-4 shadow-lg" style={{ maxWidth: "420px", width: "100%" }}>
         <h2 className="text-center text-primary">🔒 Change Password</h2>
         <p className="text-center text-muted">Enter your new password to update your credentials.</p>

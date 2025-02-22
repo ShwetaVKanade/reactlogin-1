@@ -3,24 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({ setIsAuthenticated, setUserName }) => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState(""); // No validation will be performed on the password
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Simple check to ensure fields are not empty.
     if (username.trim() === "" || password.trim() === "") {
       setErrorMessage("Both username and password are required.");
       return;
     }
 
-    // Store the username and update the state.
     localStorage.setItem("userName", username);
     setUserName(username);
     setIsAuthenticated(true);
-    navigate("/home"); // Redirect to the Home page after login
+    navigate("/home");
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/forgotpassword");
   };
 
   return (
@@ -30,7 +32,7 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">Username</label>
-            <input 
+            <input
               type="text"
               id="username"
               className="form-control"
@@ -59,6 +61,12 @@ const Login = ({ setIsAuthenticated, setUserName }) => {
           <button type="submit" className="btn btn-primary w-100 mt-3">
             Login
           </button>
+
+          <div className="text-center mt-3">
+            <button type="button" className="btn btn-link" onClick={handleForgotPassword}>
+              Forgot Password?
+            </button>
+          </div>
         </form>
       </div>
     </div>

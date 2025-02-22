@@ -13,7 +13,7 @@ const Navbar = ({ userName, setIsAuthenticated, setUserName }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
       <div className="container-fluid">
         <Link className="navbar-brand d-flex align-items-center" to="/home">
           <img 
@@ -22,7 +22,7 @@ const Navbar = ({ userName, setIsAuthenticated, setUserName }) => {
             height="70" 
             className="d-inline-block align-top" 
           />
-          <span className="ms-2">Axiom</span>
+          <span className="ms-2 fw-bold">Axiom</span>
         </Link>
         <button 
           className="navbar-toggler" 
@@ -36,7 +36,7 @@ const Navbar = ({ userName, setIsAuthenticated, setUserName }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul className="navbar-nav mb-2 mb-lg-0 align-items-center">
+          <ul className="navbar-nav mb-2 mb-lg-0 align-items-center fw-bold">
             <li className="nav-item">
               <Link className="nav-link" to="/home">Home</Link>
             </li>
@@ -55,7 +55,7 @@ const Navbar = ({ userName, setIsAuthenticated, setUserName }) => {
                   <span className="nav-link">Welcome, {userName}</span>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-outline-secondary ms-2" onClick={handleLogout}>
+                  <button className="btn btn-outline-secondary ms-2 fw-bold" onClick={handleLogout}>
                     Logout
                   </button>
                 </li>
