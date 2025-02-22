@@ -1,43 +1,55 @@
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
 import About from './Components/About';
 import Services from './Components/Service';
 import Navbar from './Components/Navbar';
-import { Route, Routes, Navigate } from 'react-router-dom';
 import Contact from './Components/contact';
 import Login from './Components/LoginForm';
 import Register from './Components/Register';
 import ForgotPassword from './Components/ForgotPassword';
 
-
-
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState('');
 
-  // Check localStorage for existing login
+  // Check if a username exists in localStorage when the app mounts
   useEffect(() => {
-    const userEmail = localStorage.getItem("userEmail");
-    if (userEmail) {
+    const storedUser = localStorage.getItem('userName');
+    if (storedUser) {
       setIsAuthenticated(true);
+      setUserName(storedUser);
     }
   }, []);
+
   return (
     <>
-     {isAuthenticated && <Navbar setIsAuthenticated={setIsAuthenticated} />}
-    <Routes>
-      <Route path="/home" element={<Home/>}/>
-      <Route path="/about" element={<About/>}/>
-      <Route path="/services" element={<Services/>}/>
-      <Route path="/contact" element={<Contact/>}/>
-      <Route path="/" element={<Login/>}/>
-      <Route path="/Register" element={<Register/>}/> 
-      <Route path="/ForgotPassword" element={<ForgotPassword/>}/> 
-      <Route path="/Navbar" element={<Navbar/>}/> 
+      {/* Render Navbar only when the user is authenticated */}
+      {isAuthenticated && <Navbar userName={userName} setIsAuthenticated={setIsAuthenticated} setUserName={setUserName} />}
 
-    </Routes>
-    
-  
+      <Routes>
+        {/* Login page is the default route */}
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <Navigate to="/home" />
+            ) : (
+              <Login setIsAuthenticated={setIsAuthenticated} setUserName={setUserName} />
+            )
+          }
+        />
+
+        {/* Other routes require authentication */}
+        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" />} />
+        <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/" />} />
+        <Route path="/services" element={isAuthenticated ? <Services /> : <Navigate to="/" />} />
+        <Route path="/contact" element={isAuthenticated ? <Contact /> : <Navigate to="/" />} />
+        <Route path="/register" element={isAuthenticated ? <Register /> : <Navigate to="/" />} />
+        <Route path="/forgotpassword" element={isAuthenticated ? <ForgotPassword /> : <Navigate to="/" />} />
+      </Routes>
     </>
   );
-}
+};
 
 export default App;
