@@ -1,6 +1,6 @@
 import React from 'react';
 // Optionally, remove the custom CSS if not needed anymore
-import"./home.css";
+import "./home.css";
 
 const Home = () => {
   return (
@@ -108,11 +108,10 @@ const Home = () => {
     <div className="col-md-4 mb-4">
       <div className="card h-100 text-center p-3 shadow-lg border-1">
         <img 
-          src="https://randomuser.me/api/portraits/men/32.jpg" 
+          src="https://randomuser.me/api/portraits/men/32.jpg"
           className="card-img-top rounded-circle mx-auto d-block" 
           alt="James Miller"
-          style={{ width: "100px", height: "100px", objectFit: "cover" }}
-        />
+          style={{ width: "100px", height: "100px", objectFit: "cover" }}/>
         <div className="card-body">
           <p className="card-text ">
             "A truly professional team that delivers top-notch quality! Their support and expertise were invaluable to our success."
